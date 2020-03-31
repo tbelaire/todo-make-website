@@ -1,6 +1,7 @@
 let listEl = document.querySelector('#thelist');
 let clearBtn = document.querySelector('.clear');
 let saveBtn = document.querySelector('.save');
+let loadBtn = document.querySelector('.load');
 let addItemEl = document.querySelector('#addItem');
 
 clearBtn.addEventListener('click', function() {
@@ -8,7 +9,11 @@ clearBtn.addEventListener('click', function() {
 });
 
 saveBtn.addEventListener('click', function() {
-    alert("Can't save yet, sorry");
+    localStorage.setItem('todoList', listEl.innerHTML);
+});
+
+loadBtn.addEventListener('click', function() {
+    listEl.innerHTML = localStorage.getItem('todoList');
 });
 
 addItemEl.addEventListener('keypress', function(event)  {
@@ -19,6 +24,5 @@ addItemEl.addEventListener('keypress', function(event)  {
         listEl.append(newEntry);
 
         this.value = " ";
-
     }
 });
