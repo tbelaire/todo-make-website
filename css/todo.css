@@ -2,3 +2,7 @@
 .list li{
     color: blue;
 }
+
+.textInput {
+    margin: 16px 16px;
+}
