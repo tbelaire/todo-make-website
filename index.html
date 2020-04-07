@@ -2,19 +2,31 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel = "Stylesheet" href = "css/todo.css">
+    <link rel="Stylesheet" href="css/todo.css">
     <title>Theo's TODO list</title>
   </head>
   <body>
-      <div class="header">
+      <header class="header">
         <img src="images/todo.png" alt="todo banner">
         <h1>App</h1>
-      </div>
+      </header>
       <ol id="thelist" class="list">
-          <li> Make a website</li>
-          <li> add javascript</li>
-          <li> ??? </li>
-          <li> profit </li>
+          <li class="todoEntry">
+              <div class="description">Make a website</div>
+              <div class="dueDate">2020-04-06<div>
+          </li>
+          <li class="todoEntry">
+              <div class="description">add javascript</div>
+              <div class="dueDate">2020-04-07<div>
+          </li>
+          <li class="todoEntry">
+              <div class="description">???</div>
+              <div class="dueDate">2020-04-08<div>
+          </li>
+          <li class="todoEntry">
+              <div class="description">Profit</div>
+              <div class="dueDate">2020-04-09<div>
+          </li>
       </ol>
       <input id="addItem" class='textInput' type="text" placeholder = "Add item">
       <div id="buttons" class="buttonContainer">

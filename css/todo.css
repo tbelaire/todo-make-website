@@ -1,7 +1,12 @@
-
-.list li{
-    color: blue;
+.list {
+    width: 300px;
 }
+
+.dueDate {
+    font-size: 10px;
+    color: #555;
+}
+
 
 .textInput {
     margin: 16px 16px;
