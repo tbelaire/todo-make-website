@@ -56,11 +56,11 @@ function todoEntry(description, dueDate) {
 
     let descriptionEl = document.createElement('div');
     descriptionEl.classList.add("description");
-    descriptionEl.append(document.createTextNode(description));
+    descriptionEl.append(description);
 
     let dueDateEl = document.createElement('div');
     dueDateEl.classList.add("dueDate");
-    dueDateEl.append(document.createTextNode(dueDate))
+    dueDateEl.append(dueDate)
 
     newEntry.append(descriptionEl, dueDateEl);
     return newEntry;
