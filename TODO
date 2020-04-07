@@ -12,6 +12,7 @@ Much later: save to localstorage?
 
 Add due date
 * some styleing (css grid or flexbox?)
+* add second imput for due date
 * add dynamic styling (late = red)
 
 Notice two ways to write it, html, and js function sucks

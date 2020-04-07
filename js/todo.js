@@ -4,6 +4,7 @@ let saveBtn = document.querySelector('.save');
 let loadBtn = document.querySelector('.load');
 let postBtn = document.querySelector('#post');
 let addItemEl = document.querySelector('#addItem');
+let addDateEl = document.querySelector('#addDate')
 
 clearBtn.addEventListener('click', function() {
     listEl.innerHTML = "";
@@ -27,8 +28,10 @@ addItemEl.addEventListener('keypress', function(event)  {
     }
 });
 
+
+
 function post() {
-    newEntry = todoEntry(addItemEl.value, "2020-04-30");
+    newEntry = todoEntry(addItemEl.value, addDateEl.value);
     addItemEl.value = "";
     listEl.append(newEntry);
 }
