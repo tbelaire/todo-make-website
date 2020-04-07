@@ -52,14 +52,14 @@ function todoEntry(description, dueDate) {
     // <div class="dueDate">2020-04-09<div>
     // </li>
     let newEntry = document.createElement('li');
-    newEntry.classList = "todoEntry";
+    newEntry.classList.add("todoEntry");
 
     let descriptionEl = document.createElement('div');
-    descriptionEl.classList = "description";
+    descriptionEl.classList.add("description");
     descriptionEl.append(document.createTextNode(description));
 
     let dueDateEl = document.createElement('div');
-    dueDateEl.classList = "dueDate";
+    dueDateEl.classList.add("dueDate");
     dueDateEl.append(document.createTextNode(dueDate))
 
     newEntry.append(descriptionEl, dueDateEl);
