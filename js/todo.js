@@ -31,9 +31,19 @@ addItemEl.addEventListener('keypress', function(event)  {
 
 
 function post() {
+    let dateValid = !!addDateEl.value;
+    let errorText = document.querySelector('#dateError');
+    errorText.classList.toggle('hidden', dateValid);
+    
+
+    if (!dateValid) {
+        return;
+    }         
+    
     newEntry = todoEntry(addItemEl.value, addDateEl.value);
     addItemEl.value = "";
     listEl.append(newEntry);
+
 }
 
 function todoEntry(description, dueDate) {
