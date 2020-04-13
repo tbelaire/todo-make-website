@@ -3,22 +3,36 @@ export interface entryData {
     dueDate: string;
 }
 
-export function todoEntry(data: entryData): HTMLElement {
-    // <li class="todoEntry">
-    //   <div class="description">Profit</div>
-    //   <div class="dueDate">2020-04-09<div>
-    // </li>
+export class TodoEntry extends HTMLElement {
+    constructor(data?: entryData) {
+        super();
+        // Could also create a template in js once, and set innerHtml.  That'll move it into this file.
+        const template = document.getElementById('todoEntryTemplate') as HTMLTemplateElement;
 
-    let descriptionEl = document.createElement('div');
-    descriptionEl.classList.add("description");
-    descriptionEl.append(data.description);
+        const shadowRoot = this.attachShadow({mode: 'open'});
+        shadowRoot.appendChild(template.content.cloneNode(true));
 
-    let dueDateEl = document.createElement('div');
-    dueDateEl.classList.add("dueDate");
-    dueDateEl.append(data.dueDate)
+        if (data?.description) {
+            const description = document.createElement('span');
+            description.slot = "description";
+            description.append(data.description);
+            this.append(description);
+        }
+        if (data?.dueDate) {
+            const dueDate = document.createElement('span');
+            dueDate.slot = "dueDate";
+            dueDate.append(data.dueDate);
+            this.append(dueDate);
+        }
+    }
 
-    let newEntry = document.createElement('li');
-    newEntry.classList.add("todoEntry");
-    newEntry.append(descriptionEl, dueDateEl);
-    return newEntry;
+    get description(): string {
+        return this.querySelector("[slot = description]")?.textContent || "";
+    }
+    
+    get dueDate(): string {
+        return this.querySelector("[slot = dueDate]")?.textContent || "";
+    }
 }
+
+customElements.define('todo-entry', TodoEntry)

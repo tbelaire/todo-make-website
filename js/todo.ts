@@ -1,4 +1,4 @@
-import {todoEntry, entryData} from './todo_entry.js'
+import {entryData, TodoEntry} from './todo_entry.js'
 
 
 let listEl = document.querySelector('#thelist')! as HTMLElement;
@@ -17,7 +17,7 @@ const initialData = [
 ];
 
 for (let row of initialData) {
-    listEl.append(todoEntry(row));
+    listEl.append(new TodoEntry(row));
 }
 
 
@@ -26,12 +26,11 @@ function post() {
     let errorText = document.querySelector('#dateError')!;
     errorText.classList.toggle('hidden', dateValid);
     
-
     if (!dateValid) {
         return;
     }         
     
-    let newEntry = todoEntry({description: addItemEl.value, dueDate: addDateEl.value});
+    let newEntry = new TodoEntry({description: addItemEl.value, dueDate: addDateEl.value});
     addItemEl.value = "";
     listEl.append(newEntry);
 }
@@ -45,12 +44,8 @@ saveBtn.addEventListener('click', function() {
     console.log("Starting walk");
     let todoItems = [];
     for (const child of listEl.children) {
-        let description = child.getElementsByClassName("description")[0];
-        let dueDate = child.getElementsByClassName("dueDate")[0];
-        //debugger;
-        console.log(description.textContent);
-        console.log(dueDate.textContent)
-        todoItems.push({description: description.textContent, dueDate:dueDate.textContent});
+        let todoEntry = child as TodoEntry;
+        todoItems.push({description: todoEntry.description, dueDate: todoEntry.dueDate});
     }
     console.log(JSON.stringify(todoItems));
     localStorage.setItem('todoList', JSON.stringify(todoItems));
@@ -63,11 +58,11 @@ loadBtn.addEventListener('click', function() {
     let savedEntries = JSON.parse(savedJson);
     if (savedEntries.length === 0) {
         for (const row of initialData) {
-            listEl.append(todoEntry(row));
+            listEl.append(new TodoEntry(row));
         } 
     } else {
         for (const row of savedEntries) {
-            listEl.append(todoEntry(row));
+            listEl.append(new TodoEntry(row));
         }
     }
 });

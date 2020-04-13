@@ -11,16 +11,6 @@
     width: 300px;
 }
 
-.description{
-    background-color: lightblue;
-}
-
-.dueDate {
-    font-size: 10px;
-    color: #555;
-}
-
-
 .textInput {
     margin: 16px 16px;
 }
