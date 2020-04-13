@@ -1,3 +1,6 @@
+import {todoEntry} from './todo_entry.js'
+
+
 let listEl = document.querySelector('#thelist');
 let clearBtn = document.querySelector('.clear');
 let saveBtn = document.querySelector('.save');
@@ -13,29 +16,8 @@ const initialData = [
     {"description": "Profit", "dueDate": "2020-04-09"}
 ];
 
-for (row of initialData) {
+for (let row of initialData) {
     listEl.append(todoEntry(row));
-}
-
-function todoEntry(data) {
-    // <li class="todoEntry">
-    //   <div class="description">Profit</div>
-    //   <div class="dueDate">2020-04-09<div>
-    // </li>
-
-
-    let descriptionEl = document.createElement('div');
-    descriptionEl.classList.add("description");
-    descriptionEl.append(data.description);
-
-    let dueDateEl = document.createElement('div');
-    dueDateEl.classList.add("dueDate");
-    dueDateEl.append(data.dueDate)
-
-    let newEntry = document.createElement('li');
-    newEntry.classList.add("todoEntry");
-    newEntry.append(descriptionEl, dueDateEl);
-    return newEntry;
 }
 
 
