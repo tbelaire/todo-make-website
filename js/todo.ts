@@ -1,13 +1,13 @@
-import {todoEntry} from './todo_entry.js'
+import {todoEntry, entryData} from './todo_entry.js'
 
 
-let listEl = document.querySelector('#thelist');
-let clearBtn = document.querySelector('.clear');
-let saveBtn = document.querySelector('.save');
-let loadBtn = document.querySelector('.load');
-let postBtn = document.querySelector('#post');
-let addItemEl = document.querySelector('#addItem');
-let addDateEl = document.querySelector('#addDate')
+let listEl = document.querySelector('#thelist')! as HTMLElement;
+let clearBtn = document.querySelector('.clear')! as HTMLButtonElement;
+let saveBtn = document.querySelector('.save')! as HTMLButtonElement;
+let loadBtn = document.querySelector('.load')! as HTMLButtonElement;
+let postBtn = document.querySelector('#post')! as HTMLButtonElement;
+let addItemEl = document.querySelector('#addItem')! as HTMLInputElement;
+let addDateEl = document.querySelector('#addDate')! as HTMLInputElement;
 
 const initialData = [
     {"description": "Make a website", "dueDate": "2020-04-04"},
@@ -23,7 +23,7 @@ for (let row of initialData) {
 
 function post() {
     let dateValid = !!addDateEl.value;
-    let errorText = document.querySelector('#dateError');
+    let errorText = document.querySelector('#dateError')!;
     errorText.classList.toggle('hidden', dateValid);
     
 
@@ -31,7 +31,7 @@ function post() {
         return;
     }         
     
-    newEntry = todoEntry({description: addItemEl.value, dueDate: addDateEl.value});
+    let newEntry = todoEntry({description: addItemEl.value, dueDate: addDateEl.value});
     addItemEl.value = "";
     listEl.append(newEntry);
 }
@@ -44,7 +44,7 @@ clearBtn.addEventListener('click', function() {
 saveBtn.addEventListener('click', function() {
     console.log("Starting walk");
     let todoItems = [];
-    for (child of listEl.children) {
+    for (const child of listEl.children) {
         let description = child.getElementsByClassName("description")[0];
         let dueDate = child.getElementsByClassName("dueDate")[0];
         //debugger;
@@ -59,14 +59,14 @@ saveBtn.addEventListener('click', function() {
 
 loadBtn.addEventListener('click', function() {
     listEl.innerHTML = '';
-    let savedJson = localStorage.getItem('todoList');
+    let savedJson = localStorage.getItem('todoList') || "[]";
     let savedEntries = JSON.parse(savedJson);
     if (savedEntries.length === 0) {
-        for (row of initialData) {
+        for (const row of initialData) {
             listEl.append(todoEntry(row));
         } 
     } else {
-        for (row of savedEntries) {
+        for (const row of savedEntries) {
             listEl.append(todoEntry(row));
         }
     }

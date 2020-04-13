@@ -1,9 +1,13 @@
-export function todoEntry(data) {
+export interface entryData {
+    description: string;
+    dueDate: string;
+}
+
+export function todoEntry(data: entryData): HTMLElement {
     // <li class="todoEntry">
     //   <div class="description">Profit</div>
     //   <div class="dueDate">2020-04-09<div>
     // </li>
-
 
     let descriptionEl = document.createElement('div');
     descriptionEl.classList.add("description");
