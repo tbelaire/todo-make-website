@@ -13,25 +13,25 @@ export class TodoEntry extends HTMLElement {
         shadowRoot.appendChild(template.content.cloneNode(true));
 
         if (data?.description) {
-            const description = document.createElement('span');
-            description.slot = "description";
-            description.append(data.description);
-            this.append(description);
+            const el = document.createElement('span');
+            el.slot = "description";
+            el.append(data.description);
+            this.append(el);
         }
         if (data?.dueDate) {
-            const dueDate = document.createElement('span');
-            dueDate.slot = "dueDate";
-            dueDate.append(data.dueDate);
-            this.append(dueDate);
+            const el = document.createElement('span');
+            el.slot = "dueDate";
+            el.append(data.dueDate);
+            this.append(el);
         }
     }
 
     get description(): string {
-        return this.querySelector("[slot = description]")?.textContent || "";
+        return this.querySelector('[slot="description"]')?.textContent || "";
     }
     
     get dueDate(): string {
-        return this.querySelector("[slot = dueDate]")?.textContent || "";
+        return this.querySelector('[slot="dueDate"]')?.textContent || "";
     }
 }
 
