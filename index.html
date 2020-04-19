@@ -10,8 +10,8 @@
         <img src="images/todo.png" alt="todo banner">
         <h1>App</h1>
       </header>
-      <ol id="thelist" class="list">
-      </ol>
+      <ul id="thelist" class="list">
+      </ul>
     
       <input id="addItem" class='textInput' type="text" placeholder = "Add item">
       <input id="addDate" class='textInput' type="Date" placeholder = "Add date" required="required">
@@ -26,9 +26,16 @@
 
       <template id="todoEntryTemplate">
         <link rel="Stylesheet" href="css/todo_entry.css">
-        <li class="todoEntry">
-          <div class="description"><slot name="description"></slot></div>
-          <div class="dueDate"><slot name="dueDate">2020-01-04</slot><div>
+        <li class="todoEntry col">
+          <label class='row centered'>
+            <input class="completed" type="checkbox" title="Completed">
+            <span class="description">
+              <slot name="description"></slot>
+            </span>
+          </label>
+          <div class="dueDate">
+            <slot name="dueDate">2020-01-04</slot>
+          </div>
         </li>
       </template>
   </body>

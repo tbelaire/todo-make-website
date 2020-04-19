@@ -1,9 +1,38 @@
+.todoEntry {
+    margin-bottom: 8px;
+    list-style-type: none;
+}
 
-.description{
+.description {
     background-color: lightblue;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+label {
+    height: 32px;
+}
+
+:checked + .description {
+    text-decoration: line-through;
 }
 
 .dueDate {
+    padding-left: 32px;
     font-size: 10px;
     color: #555;
+}
+
+.centered {
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.col {
+    display: flex;
+    flex-flow: column nowrap;
 }
