@@ -1,16 +1,19 @@
 export interface entryData {
     description: string;
     dueDate: string;
+    completed?: boolean;
 }
 
 export class TodoEntry extends HTMLElement {
+    private readonly shadow: ShadowRoot;
     constructor(data?: entryData) {
         super();
         // Could also create a template in js once, and set innerHtml.  That'll move it into this file.
         const template = document.getElementById('todoEntryTemplate') as HTMLTemplateElement;
 
-        const shadowRoot = this.attachShadow({mode: 'open'});
-        shadowRoot.appendChild(template.content.cloneNode(true));
+        this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow.appendChild(template.content.cloneNode(true));
+
 
         if (data?.description) {
             const el = document.createElement('span');
@@ -24,6 +27,9 @@ export class TodoEntry extends HTMLElement {
             el.append(data.dueDate);
             this.append(el);
         }
+        if (data?.completed) {
+            this.completed = data!.completed!;
+        }
     }
 
     get description(): string {
@@ -33,6 +39,27 @@ export class TodoEntry extends HTMLElement {
     get dueDate(): string {
         return this.querySelector('[slot="dueDate"]')?.textContent || "";
     }
+    
+    get completed(): boolean {
+        return this.completedCheckbox().checked;
+    }
+
+    set completed(checked: boolean) {
+        this.completedCheckbox().checked = checked;
+    }
+
+    completedCheckbox(): HTMLInputElement {
+        return this.shadow.querySelector(".completed") as HTMLInputElement;
+    }
+
+    serialize(): entryData {
+        return {
+            completed: this.completed,
+            description: this.description,
+            dueDate: this.dueDate,
+        }
+    }
+
 }
 
 customElements.define('todo-entry', TodoEntry)

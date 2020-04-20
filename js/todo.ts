@@ -41,13 +41,12 @@ clearBtn.addEventListener('click', function() {
 });
 
 saveBtn.addEventListener('click', function() {
-    console.log("Starting walk");
     let todoItems = [];
     for (const child of listEl.children) {
         let todoEntry = child as TodoEntry;
-        todoItems.push({description: todoEntry.description, dueDate: todoEntry.dueDate});
+        todoItems.push(todoEntry.serialize());
     }
-    console.log(JSON.stringify(todoItems));
+    console.log("Storing todoList: " + JSON.stringify(todoItems));
     localStorage.setItem('todoList', JSON.stringify(todoItems));
 
 });
@@ -56,14 +55,12 @@ loadBtn.addEventListener('click', function() {
     listEl.innerHTML = '';
     let savedJson = localStorage.getItem('todoList') || "[]";
     let savedEntries = JSON.parse(savedJson);
-    if (savedEntries.length === 0) {
-        for (const row of initialData) {
-            listEl.append(new TodoEntry(row));
-        } 
-    } else {
-        for (const row of savedEntries) {
-            listEl.append(new TodoEntry(row));
-        }
+
+    if (savedEntries.length == 0) {
+        savedEntries = initialData;
+    } 
+    for (const row of savedEntries) {
+        listEl.append(new TodoEntry(row));
     }
 });
 
