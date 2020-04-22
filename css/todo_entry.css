@@ -1,9 +1,25 @@
 
 .description{
     background-color: lightblue;
+    padding: 4px;
+    border-radius: 4px;
 }
 
 .dueDate {
     font-size: 10px;
     color: #555;
+}
+
+.row {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.col {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.dueDate {
+    padding-left: 24px;
 }

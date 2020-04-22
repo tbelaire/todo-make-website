@@ -26,8 +26,11 @@
 
       <template id="todoEntryTemplate">
         <link rel="Stylesheet" href="css/todo_entry.css">
-        <li class="todoEntry">
-          <div class="description"><slot name="description"></slot></div>
+        <li class="todoEntry col">
+          <label class="row">
+            <input type="checkbox" id="completed"></input>
+            <span class="description"><slot name="description"></slot></span>
+          </label>
           <div class="dueDate"><slot name="dueDate">2020-01-04</slot><div>
         </li>
       </template>

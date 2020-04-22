@@ -29,7 +29,7 @@ function post() {
     if (!dateValid) {
         return;
     }         
-    
+
     let newEntry = new TodoEntry({description: addItemEl.value, dueDate: addDateEl.value});
     addItemEl.value = "";
     listEl.append(newEntry);
@@ -45,7 +45,7 @@ saveBtn.addEventListener('click', function() {
     let todoItems = [];
     for (const child of listEl.children) {
         let todoEntry = child as TodoEntry;
-        todoItems.push({description: todoEntry.description, dueDate: todoEntry.dueDate});
+        todoItems.push(todoEntry.serialize());
     }
     console.log(JSON.stringify(todoItems));
     localStorage.setItem('todoList', JSON.stringify(todoItems));
